@@ -11,15 +11,22 @@ public class MisAlignedColorWirePair {
         ColorWirePairPrinter colorWirePairPrinter = new ColorWirePairPrinter();
         colorWirePairPrinter.printColorWirePair(listColorWirePair);
         int colorWirePairSet = listColorWirePair.size();
-        assert (colorWirePairSet !=25) : "Valid color wire pairs";
+        assert (colorWirePairSet ==25);
         System.out.println("All is well (maybe!)");
 
     }
 
     private static void colorWirePairTest(final List<ColorWirePair> listColorWirePair){
-        ColorWirePair colorWirePair= listColorWirePair.get(3);
-        assert (WHITE.equalsIgnoreCase(colorWirePair.getMajorColor())):"Invalid Major Color";
-        assert (BROWN.equalsIgnoreCase(colorWirePair.getMinorColor())):"Invalid Minor Color";
+
+        StringBuilder colorFormatter = new StringBuilder();
+
+        listColorWirePair.forEach( colorWirePair -> colorFormatter.append(String.format("%d  | %s  | %s \n",
+                colorWirePair.getWirePair(),colorWirePair.getMajorColor(),colorWirePair.getMinorColor())  ));
+        String originalColorFormatter = colorFormatter.toString();
+        ColorWirePairPrinter colorWirePairPrinter = new ColorWirePairPrinter();
+        final String newColorFormatter  =colorWirePairPrinter.getFormatedColourPair();
+        assert(originalColorFormatter.equalsIgnoreCase(newColorFormatter));
+
     }
 
     private static List<ColorWirePair> getColorWirePair() {
